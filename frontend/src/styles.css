@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-100 p-6;
+  }
+  .btn-primary {
+    @apply bg-sap-blue hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-150 ease-in-out;
+  }
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-sap-blue focus:border-transparent outline-none transition;
+  }
+  .table-header {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50;
+  }
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-700 bg-white border-b border-gray-100;
+  }
+}
