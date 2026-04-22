@@ -14,19 +14,21 @@ const login = async (username, password) => {
 
     const rawXml = await sendSoapRequest(functionName, xmlReq);
     const json = await parseXml(rawXml);
+    
+    // Robust drilling: look for the response tag in any available form
+    const response = json.ZFM_LOGIN_DSResponse || 
+                     json.login_dsresponse || 
+                     (Object.values(json).find(v => typeof v === 'object' && (v.status || v.STATUS))) ||
+                     json;
 
-    // ✅ Extract correct response path
-    const response =
-      json['soap-env:Envelope']?.['soap-env:Body']?.['n0:ZFM_LOGIN_DSResponse'] ||
-      json['Envelope']?.['Body']?.['ZFM_LOGIN_DSResponse'];
+    // Extract values with flexible case-sensitivity
+    const status = response.STATUS || response.status;
+    const message = response.MESSAGE || response.message;
 
-    if (!response) {
+    if (!status && !message) {
+      console.error('[Auth Service] Unexpected JSON structure:', JSON.stringify(json, null, 2));
       throw new Error('Invalid SAP response structure');
     }
-
-    // ✅ Extract values
-    const status = response.STATUS;
-    const message = response.MESSAGE;
 
     if (status === 'SUCCESS') {
       return {

@@ -16,15 +16,26 @@ const keyMappings = {
   'NETWR': 'netValue',
   'WAERK': 'currency',
   'FKDAT': 'billingDate',
+  'AUDAT': 'billingDate',
+  'ERDAT': 'date',
   'MATNR': 'material',
+  'KWMENG': 'quantity',
+  'VRKME': 'uom',
+  'LFIMG': 'quantity',
   'ARKTX': 'description',
+  'AUART': 'orderType',
   'NAME1': 'customerName',
+  'NAME': 'customerName',
   'ORT01': 'city',
+  'CITY': 'city',
   'PSTLZ': 'postalCode',
   'STRAS': 'street',
   'TELF1': 'phone',
+  'PHONE': 'phone',
   'SMTP_ADDR': 'email',
-  'STATUS': 'status'
+  'EMAIL': 'email',
+  'STATUS': 'status',
+  'KUNRG': 'billToCustomer'
 };
 
 const mapSapKeys = (sapObj) => {
@@ -33,6 +44,12 @@ const mapSapKeys = (sapObj) => {
   for (const [key, value] of Object.entries(sapObj)) {
     const newKey = keyMappings[key] || key.toLowerCase();
     newObj[newKey] = value;
+    
+    // Robustly map any SAP date field to common UI aliases
+    if (['ERDAT', 'AUDAT', 'FKDAT'].includes(key)) {
+      newObj['billingDate'] = value;
+      newObj['date'] = value;
+    }
   }
   return newObj;
 };

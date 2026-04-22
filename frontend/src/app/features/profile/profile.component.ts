@@ -32,7 +32,7 @@ import { AuthService } from '../../core/services/auth.service';
             </div>
           </div>
           <div class="hidden sm:block 2xl:hidden mt-6 min-w-0 flex-1">
-            <h1 class="text-2xl font-bold text-gray-900 truncate">{{ profile?.customerName || 'Global Corp Ltd.' }}</h1>
+            <h1 class="text-2xl font-bold text-gray-900 truncate">{{ profile?.customerName }}</h1>
           </div>
         </div>
       </div>
@@ -46,19 +46,16 @@ import { AuthService } from '../../core/services/auth.service';
           <dl class="sm:divide-y sm:divide-gray-200">
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-50 transition">
               <dt class="text-sm font-medium text-gray-500">Full name</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.customerName || 'Global Corporation Ltd.' }}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.customerName }}</dd>
             </div>
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-50 transition">
               <dt class="text-sm font-medium text-gray-500">Address</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.street || '1000 SAP Boulevard' }}, <br> {{ profile?.city || 'Walldorf' }} {{ profile?.postalCode || '69190' }}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.street }}{{ profile?.city  }} {{ profile?.postalCode }}</dd>
             </div>
-            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-50 transition">
-              <dt class="text-sm font-medium text-gray-500">Email address</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.email || 'contact@globalcorp.com' }}</dd>
-            </div>
+            
             <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-50 transition">
               <dt class="text-sm font-medium text-gray-500">Phone number</dt>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.phone || '+49 123 456 789' }}</dd>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ profile?.phone}}</dd>
             </div>
              <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 hover:bg-gray-50 transition">
               <dt class="text-sm font-medium text-gray-500">Account Status</dt>
@@ -73,13 +70,13 @@ import { AuthService } from '../../core/services/auth.service';
 export class ProfileComponent implements OnInit {
   api = inject(ApiService);
   auth = inject(AuthService);
-  
+
   profile: any = null;
 
   ngOnInit() {
     this.api.get<any>(`profile/${this.auth.currentUserValue?.customerId}`).subscribe({
       next: (res) => this.profile = res.data,
-      error: () => {} // rely on mock in template
+      error: () => { } // rely on mock in template
     });
   }
 }

@@ -76,12 +76,19 @@ export class LoginComponent {
   router = inject(Router);
 
   loginForm = this.fb.group({
-    username: ['k901996', Validators.required],
-    password: ['Darshan@1974', Validators.required]
+    username: ['', Validators.required],
+    password: ['', Validators.required]
   });
 
   error = '';
   loading = false;
+
+  constructor() {
+    // If already logged in, go to dashboard
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit() {
     if (this.loginForm.invalid) return;

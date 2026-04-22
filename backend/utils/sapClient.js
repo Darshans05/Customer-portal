@@ -20,22 +20,44 @@ const sapClient = axios.create({
   })
 });
 
+// Explicit mapping for function names to service endpoints
+const serviceMap = {
+  'ZFM_INVOICEDATA_DS': 'zsd_cust_invoice_ds',
+  'ZFM_INVOICEFORM_DS': 'zsd_invoiceform_ds',
+  'ZFM_CUST_DELIVERY_DS': 'zsd_cust_delivery_ds',
+  'ZFM_CUS_INQUIRY_DS': 'zsd_cust_inquiry_ds',
+  'ZFM_CDMEMO_DS': 'zsd_cust_cdmemo_ds'
+};
+
 /**
  * Sends a SOAP request to SAP
- * @param {string} endpoint - The specific SOAP endpoint (if appending to baseURL) or full URL if needed
+ * @param {string} endpoint - The function name (e.g. ZFM_LOGIN_DS)
  * @param {string} soapXml - The compiled SOAP XML payload
  * @returns {Promise<string>} - The raw XML response
  */
 const sendSoapRequest = async (endpoint, soapXml) => {
   try {
-    // Generate the SOAMANAGER explicit route mapping for SCS services
-    // Map function name (e.g., ZFM_LOGIN_DS) to service endpoint (e.g., zsd_login_ds)
-    let servicePath = endpoint.toLowerCase();
-    if (servicePath.startsWith('zfm_')) {
-      servicePath = servicePath.replace('zfm_', 'zsd_');
+    // Determine the service path from our explicit map or use generic mapping
+    let servicePath = serviceMap[endpoint];
+
+    if (!servicePath) {
+      servicePath = endpoint.toLowerCase();
+      if (servicePath.startsWith('zfm_')) {
+        servicePath = servicePath.replace('zfm_', 'zsd_');
+      }
     }
-    const overrideEndpoint = `${servicePath}?sap-client=100`;
-    console.log(`[SAP Client] Calling Endpoint: ${process.env.SAP_SOAP_BASE_URL}${overrideEndpoint}`);
+
+    // Defensive check to avoid duplicate sap-client or multiple '?'
+    const baseUrl = process.env.SAP_SOAP_BASE_URL || '';
+    const hasQuery = baseUrl.includes('?') || servicePath.includes('?');
+    const hasClient = baseUrl.includes('sap-client') || servicePath.includes('sap-client');
+    
+    let overrideEndpoint = servicePath;
+    if (!hasClient) {
+      overrideEndpoint += (hasQuery ? '&' : '?') + 'sap-client=100';
+    }
+
+    console.log(`[SAP Client] Calling Endpoint: ${baseUrl}${overrideEndpoint}`);
 
     const response = await sapClient.post(overrideEndpoint, soapXml);
     return response.data;

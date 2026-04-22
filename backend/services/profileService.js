@@ -10,7 +10,9 @@ const getProfile = async (kunnr) => {
   const rawXml = await sendSoapRequest(functionName, xmlReq);
   const jsonResponse = await parseXml(rawXml);
   
-  const profileData = jsonResponse.PROFILE_DATA || jsonResponse.E_PROFILE;
+  const responseBody = jsonResponse.ZFM_CUS_PROFILE_DSResponse || jsonResponse;
+  const profileData = responseBody.ES_PROFILE || responseBody.PROFILE_DATA || responseBody.E_PROFILE;
+  
   return mapSapKeys(profileData);
 };
 

@@ -44,9 +44,10 @@ exports.getInvoices = asyncHandler(async (req, res) => {
 });
 
 exports.getInvoicePdf = asyncHandler(async (req, res) => {
-  const pdfBuffer = await financeService.getInvoicePdf(req.params.vbeln);
+  const { kunnr, vbeln } = req.params;
+  const pdfBuffer = await financeService.getInvoicePdf(kunnr, vbeln);
   res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', `attachment; filename=Invoice_${req.params.vbeln}.pdf`);
+  res.setHeader('Content-Disposition', `attachment; filename=Invoice_${vbeln}.pdf`);
   res.send(pdfBuffer);
 });
 

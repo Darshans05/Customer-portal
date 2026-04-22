@@ -26,11 +26,6 @@ import { AuthService } from '../core/services/auth.service';
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             Financial Sheet
           </a>
-          <a routerLink="/analytics" routerLinkActive="bg-sap-blue border-sap-gold text-white" 
-            class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800 rounded-lg transition-colors border-l-4 border-transparent">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-            Analytics
-          </a>
           <a routerLink="/profile" routerLinkActive="bg-sap-blue border-sap-gold text-white" 
             class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800 rounded-lg transition-colors border-l-4 border-transparent">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
@@ -59,7 +54,7 @@ import { AuthService } from '../core/services/auth.service';
         <!-- Top Navbar -->
         <header class="bg-white shadow-sm border-b border-gray-100 z-10">
           <div class="px-8 flex justify-between items-center h-16">
-            <h2 class="text-xl font-medium text-gray-800">Welcome to SAP B2B Portal</h2>
+            <h2 class="text-xl font-medium text-gray-800">Welcome to SAP Customer Portal</h2>
             <div class="flex items-center space-x-4">
               <button class="text-gray-400 hover:text-sap-blue transition relative">
                 <span class="absolute top-0 right-0 block h-2 w-2 rounded-full border-2 border-white bg-red-400"></span>

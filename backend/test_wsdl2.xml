@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?\r
+\wsdl:definitions targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:sap-com:document:sap:rfc:functions" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"\r
+\wsdl:documentation\r
+\sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl"/\r
+\wsdl:documentation\r
+\wsp:UsingPolicy wsdl:required="true"/\r
+\wsp:Policy wsu:Id="BN__binding"\r
+\wsp:ExactlyOne\r
+\wsp:All\r
+\saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true"/\r
+\wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/\r
+\wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"\r
+\sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:HttpBasicAuthentication/\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\sp:AlgorithmSuite\r
+\wsp:Policy\r
+\sp:Basic128Rsa15/\r
+\wsp:Policy\r
+\sp:AlgorithmSuite\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:Strict/\r
+\wsp:Policy\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:TransportBinding\r
+\wsp:All\r
+\wsp:All\r
+\wsp:All\r
+\saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true"/\r
+\wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/\r
+\wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"\r
+\sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:HttpBasicAuthentication/\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\sp:AlgorithmSuite\r
+\wsp:Policy\r
+\sp:Basic128Rsa15/\r
+\wsp:Policy\r
+\sp:AlgorithmSuite\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:Strict/\r
+\wsp:Policy\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:TransportBinding\r
+\wsp:All\r
+\wsp:All\r
+\wsp:ExactlyOne\r
+\wsp:Policy\r
+\wsp:Policy wsu:Id="BN__binding_soap12"\r
+\wsp:ExactlyOne\r
+\wsp:All\r
+\saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true"/\r
+\wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/\r
+\wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"\r
+\sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:HttpBasicAuthentication/\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\sp:AlgorithmSuite\r
+\wsp:Policy\r
+\sp:Basic128Rsa15/\r
+\wsp:Policy\r
+\sp:AlgorithmSuite\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:Strict/\r
+\wsp:Policy\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:TransportBinding\r
+\wsp:All\r
+\wsp:All\r
+\wsp:All\r
+\saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true"/\r
+\wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/\r
+\wsp:All xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"\r
+\sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:HttpBasicAuthentication/\r
+\wsp:Policy\r
+\sp:HttpsToken\r
+\wsp:Policy\r
+\sp:TransportToken\r
+\sp:AlgorithmSuite\r
+\wsp:Policy\r
+\sp:Basic128Rsa15/\r
+\wsp:Policy\r
+\sp:AlgorithmSuite\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:Strict/\r
+\wsp:Policy\r
+\sp:Layout\r
+\wsp:Policy\r
+\sp:TransportBinding\r
+\wsp:All\r
+\wsp:All\r
+\wsp:ExactlyOne\r
+\wsp:Policy\r
+\wsp:Policy wsu:Id="IF__ZSD_CUST_SALESORDER_DS"\r
+\wsp:ExactlyOne\r
+\wsp:All\r
+\sapsession:Session xmlns:sapsession="http://www.sap.com/webas/630/soap/features/session/"\r
+\sapsession:enableSession>false</sapsession:enableSession\r
+\sapsession:Session\r
+\sapcentraladmin:CentralAdministration xmlns:sapcentraladmin="http://www.sap.com/webas/700/soap/features/CentralAdministration/" wsp:Optional="true"\r
+\sapcentraladmin:BusinessApplicationID>6045BDABF3551FD08CF464F5BF5E4000</sapcentraladmin:BusinessApplicationID\r
+\sapcentraladmin:CentralAdministration\r
+\wsp:All\r
+\wsp:ExactlyOne\r
+\wsp:Policy\r
+\wsp:Policy wsu:Id="OP__ZFM_CUST_SALESORDER_DS"\r
+\wsp:ExactlyOne\r
+\wsp:All\r
+\saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required\r
+\sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit\r
+\sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking\r
+\saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM\r
+\wsp:All\r
+\wsp:ExactlyOne\r
+\wsp:Policy\r
+\wsdl:types\r
+\xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:rfc:functions"\r
+\xsd:simpleType name="char10"\r
+\xsd:restriction base="xsd:string"\r
+\xsd:maxLength value="10"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:simpleType name="char4"\r
+\xsd:restriction base="xsd:string"\r
+\xsd:maxLength value="4"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:simpleType name="char40"\r
+\xsd:restriction base="xsd:string"\r
+\xsd:maxLength value="40"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:simpleType name="date10"\r
+\xsd:restriction base="xsd:string"\r
+\xsd:maxLength value="10"/\r
+\xsd:pattern value="\d\d\d\d-\d\d-\d\d"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:simpleType name="quantum15.3"\r
+\xsd:restriction base="xsd:decimal"\r
+\xsd:totalDigits value="15"/\r
+\xsd:fractionDigits value="3"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:simpleType name="unit3"\r
+\xsd:restriction base="xsd:string"\r
+\xsd:maxLength value="3"/\r
+\xsd:restriction\r
+\xsd:simpleType\r
+\xsd:complexType name="ZSTR_CUS_SALESORDER_DS"\r
+\xsd:sequence\r
+\xsd:element name="VBELN" type="tns:char10"/\r
+\xsd:element name="ERDAT" type="tns:date10"/\r
+\xsd:element name="AUART" type="tns:char4"/\r
+\xsd:element name="MATNR" type="tns:char40"/\r
+\xsd:element name="KWMENG" type="tns:quantum15.3"/\r
+\xsd:element name="VRKME" type="tns:unit3"/\r
+\xsd:sequence\r
+\xsd:complexType\r
+\xsd:complexType name="ZTT_CUS_SALESORDER_DS"\r
+\xsd:sequence\r
+\xsd:element name="item" type="tns:ZSTR_CUS_SALESORDER_DS" minOccurs="0" maxOccurs="unbounded"/\r
+\xsd:sequence\r
+\xsd:complexType\r
+\xsd:element name="ZFM_CUST_SALESORDER_DS"\r
+\xsd:complexType\r
+\xsd:sequence\r
+\xsd:element name="USERNAME" type="tns:char10"/\r
+\xsd:sequence\r
+\xsd:complexType\r
+\xsd:element\r
+\xsd:element name="ZFM_CUST_SALESORDER_DSResponse"\r
+\xsd:complexType\r
+\xsd:sequence\r
+\xsd:element name="ET_SALES" type="tns:ZTT_CUS_SALESORDER_DS"/\r
+\xsd:sequence\r
+\xsd:complexType\r
+\xsd:element\r
+\xsd:schema\r
+\wsdl:types\r
+\wsdl:message name="ZFM_CUST_SALESORDER_DS"\r
+\wsdl:part name="parameters" element="tns:ZFM_CUST_SALESORDER_DS"/\r
+\wsdl:message\r
+\wsdl:message name="ZFM_CUST_SALESORDER_DSResponse"\r
+\wsdl:part name="parameter" element="tns:ZFM_CUST_SALESORDER_DSResponse"/\r
+\wsdl:message\r
+\wsdl:portType name="ZSD_CUST_SALESORDER_DS"\r
+\wsdl:documentation\r
+\sapdoc:sapdoc xmlns:sapdoc="urn:sap:esi:documentation"\r
+\sapdoc:docitem docURL="http://AZKTLDS5CP.kcloud.com:8000/sap/bc/esdt/docu/sd_text?sap-client=100&amp;sd_name=ZSD_CUST_SALESORDER_DS"/\r
+\sapdoc:sapdoc\r
+\wsdl:documentation\r
+\wsp:Policy\r
+\wsp:PolicyReference URI="#IF__ZSD_CUST_SALESORDER_DS"/\r
+\wsp:Policy\r
+\wsdl:operation name="ZFM_CUST_SALESORDER_DS"\r
+\wsp:Policy\r
+\wsp:PolicyReference URI="#OP__ZFM_CUST_SALESORDER_DS"/\r
+\wsp:Policy\r
+\wsdl:input message="tns:ZFM_CUST_SALESORDER_DS"/\r
+\wsdl:output message="tns:ZFM_CUST_SALESORDER_DSResponse"/\r
+\wsdl:operation\r
+\wsdl:portType\r
+\wsdl:binding name="binding" type="tns:ZSD_CUST_SALESORDER_DS"\r
+\wsp:Policy\r
+\wsp:PolicyReference URI="#BN__binding"/\r
+\wsp:Policy\r
+\soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/\r
+\wsdl:operation name="ZFM_CUST_SALESORDER_DS"\r
+\soap:operation soapAction="urn:sap-com:document:sap:rfc:functions:ZSD_CUST_SALESORDER_DS:ZFM_CUST_SALESORDER_DSRequest" style="document"/\r
+\wsdl:input\r
+\soap:body use="literal"/\r
+\wsdl:input\r
+\wsdl:output\r
+\soap:body use="literal"/\r
+\wsdl:output\r
+\wsdl:operation\r
+\wsdl:binding\r
+\wsdl:binding name="binding_soap12" type="tns:ZSD_CUST_SALESORDER_DS"\r
+\wsp:Policy\r
+\wsp:PolicyReference URI="#BN__binding_soap12"/\r
+\wsp:Policy\r
+\wsoap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/\r
+\wsdl:operation name="ZFM_CUST_SALESORDER_DS"\r
+\wsoap12:operation soapAction="urn:sap-com:document:sap:rfc:functions:ZSD_CUST_SALESORDER_DS:ZFM_CUST_SALESORDER_DSRequest" style="document"/\r
+\wsdl:input\r
+\wsoap12:body use="literal"/\r
+\wsdl:input\r
+\wsdl:output\r
+\wsoap12:body use="literal"/\r
+\wsdl:output\r
+\wsdl:operation\r
+\wsdl:binding\r
+\wsdl:service name="service"\r
+\wsdl:port name="binding" binding="tns:binding"\r
+\soap:address location="http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zsd_cust_salesorder_ds?sap-client=100"/\r
+\wsdl:port\r
+\wsdl:port name="binding_soap12" binding="tns:binding_soap12"\r
+\wsoap12:address location="http://AZKTLDS5CP.kcloud.com:8000/sap/bc/srt/scs/sap/zsd_cust_salesorder_ds?sap-client=100"/\r
+\wsdl:port\r
+\wsdl:service\r
+\wsdl:definitions>

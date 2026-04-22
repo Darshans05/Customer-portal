@@ -15,11 +15,11 @@ router.get('/delivery/:kunnr', portalController.getDeliveries);
 
 // FINANCE
 router.get('/invoice/:kunnr', portalController.getInvoices);
-router.get('/invoice/pdf/:vbeln', portalController.getInvoicePdf);
+router.get('/invoice/pdf/:kunnr/:vbeln', portalController.getInvoicePdf);
 router.get('/pay-aging/:kunnr', portalController.getPayAging);
 router.get('/memo/:kunnr', portalController.getMemo);
 
 // ANALYTICS
-router.get('/overall-sales/:kunnr', portalController.getOverallSales);
+router.get('/analytics/sales/:kunnr', portalController.getOverallSales);
 
 module.exports = router;
