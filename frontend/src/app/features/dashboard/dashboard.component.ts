@@ -226,21 +226,39 @@ export class DashboardComponent implements OnInit {
   }
 
   loadOverviewStats() {
-    if (!this.customerId) return;
+    console.log(`[DASHBOARD OVERVIEW] loadOverviewStats called for customerId:`, this.customerId);
+    if (!this.customerId) {
+      console.warn(`[DASHBOARD OVERVIEW] customerId is missing!`);
+      return;
+    }
     
     this.api.get<{success: boolean, data: any[]}>(`inquiry/${this.customerId}`).subscribe({
-      next: (res) => this.quickStats.inquiries = res.data?.length || 0,
-      error: () => console.error('Failed to load inquiries for overview')
-    });
-
-    this.api.get<{success: boolean, data: any[]}>(`salesorder/${this.customerId}`).subscribe({
-      next: (res) => this.quickStats.sales = res.data?.length || 0,
-      error: () => console.error('Failed to load sales orders for overview')
-    });
-
-    this.api.get<{success: boolean, data: any[]}>(`delivery/${this.customerId}`).subscribe({
-      next: (res) => this.quickStats.deliveries = res.data?.length || 0,
-      error: () => console.error('Failed to load deliveries for overview')
+      next: (res) => {
+        console.log(`[DASHBOARD OVERVIEW] inquiries response:`, res);
+        this.quickStats.inquiries = res.data?.length || 0;
+        console.log(`[DASHBOARD OVERVIEW] inquiries count set to:`, this.quickStats.inquiries);
+        
+        // Chain the next request
+        this.api.get<{success: boolean, data: any[]}>(`salesorder/${this.customerId}`).subscribe({
+          next: (res2) => {
+            console.log(`[DASHBOARD OVERVIEW] sales orders response:`, res2);
+            this.quickStats.sales = res2.data?.length || 0;
+            console.log(`[DASHBOARD OVERVIEW] sales count set to:`, this.quickStats.sales);
+            
+            // Chain the final request
+            this.api.get<{success: boolean, data: any[]}>(`delivery/${this.customerId}`).subscribe({
+              next: (res3) => {
+                console.log(`[DASHBOARD OVERVIEW] deliveries response:`, res3);
+                this.quickStats.deliveries = res3.data?.length || 0;
+                console.log(`[DASHBOARD OVERVIEW] deliveries count set to:`, this.quickStats.deliveries);
+              },
+              error: (err) => console.error('[DASHBOARD OVERVIEW] Failed to load deliveries for overview:', err)
+            });
+          },
+          error: (err) => console.error('[DASHBOARD OVERVIEW] Failed to load sales orders for overview:', err)
+        });
+      },
+      error: (err) => console.error('[DASHBOARD OVERVIEW] Failed to load inquiries for overview:', err)
     });
   }
 
@@ -252,14 +270,20 @@ export class DashboardComponent implements OnInit {
     else if (this.activeTab === 'sales') endpoint = `salesorder/${this.customerId}`;
     else if (this.activeTab === 'deliveries') endpoint = `delivery/${this.customerId}`;
 
+    console.log(`[DASHBOARD] Fetching data for endpoint: ${endpoint}`);
     this.api.get<{success: boolean, data: any[]}>(endpoint).subscribe({
       next: (res) => {
-        this.data = res.data || [];
+        console.log(`[DASHBOARD] Received response:`, res);
+        this.data = res?.data || [];
+        console.log(`[DASHBOARD] Data count:`, this.data.length);
         this.loading = false;
+        console.log(`[DASHBOARD] Loading set to false`);
       },
-      error: () => {
+      error: (err) => {
+        console.error('[DASHBOARD] API Error:', err);
         // Mock fallback for UI showcase
         setTimeout(() => {
+          console.log(`[DASHBOARD] Error fallback triggered`);
           this.data = [{}, {}, {}]; // mock 3 rows
           this.loading = false;
         }, 600);

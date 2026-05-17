@@ -40,15 +40,23 @@ const keyMappings = {
 
 const mapSapKeys = (sapObj) => {
   if (!sapObj) return null;
+  
+  // If we accidentally got an array, take the first item
+  const actualObj = Array.isArray(sapObj) ? sapObj[0] : sapObj;
+  if (!actualObj) return null;
+
   const newObj = {};
-  for (const [key, value] of Object.entries(sapObj)) {
+  for (const [key, value] of Object.entries(actualObj)) {
+    // xml2js with explicitArray:false might still return single-item arrays for text nodes sometimes
+    const actualValue = Array.isArray(value) ? value[0] : value;
+    
     const newKey = keyMappings[key] || key.toLowerCase();
-    newObj[newKey] = value;
+    newObj[newKey] = actualValue;
     
     // Robustly map any SAP date field to common UI aliases
     if (['ERDAT', 'AUDAT', 'FKDAT'].includes(key)) {
-      newObj['billingDate'] = value;
-      newObj['date'] = value;
+      newObj['billingDate'] = actualValue;
+      newObj['date'] = actualValue;
     }
   }
   return newObj;
@@ -56,9 +64,18 @@ const mapSapKeys = (sapObj) => {
 
 const mapSapList = (sapList) => {
   if (!sapList) return [];
-  // xml2js might return single item objects instead of arrays when list has 1 item
-  const list = Array.isArray(sapList) ? sapList : [sapList];
-  return list.map(item => mapSapKeys(item));
+  
+  // Robustly handle different list wrappers from SAP/xml2js
+  let list = [];
+  if (Array.isArray(sapList)) {
+    list = sapList;
+  } else if (sapList.item) {
+    list = Array.isArray(sapList.item) ? sapList.item : [sapList.item];
+  } else {
+    list = [sapList];
+  }
+  
+  return list.map(item => mapSapKeys(item)).filter(item => item !== null);
 };
 
 module.exports = { mapSapKeys, mapSapList };

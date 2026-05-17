@@ -7,6 +7,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const app = express();
+app.set('etag', false); // Disable ETags to prevent 304 responses
 const PORT = process.env.PORT || 3000;
 
 // Middleware

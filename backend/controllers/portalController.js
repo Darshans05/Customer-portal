@@ -15,31 +15,40 @@ exports.login = asyncHandler(async (req, res) => {
     return res.status(400).json({ success: false, message: 'Username and password required' });
   }
   const result = await authService.login(username, password);
-  res.json({ success: true, ...result });
+  if (result.success) {
+    res.json({ success: true, ...result });
+  } else {
+    res.status(401).json(result);
+  }
 });
 
 exports.getProfile = asyncHandler(async (req, res) => {
   const result = await profileService.getProfile(req.params.kunnr);
+  console.log(`[DEBUG] getProfile result keys:`, Object.keys(result || {}));
   res.json({ success: true, data: result });
 });
 
 exports.getInquiries = asyncHandler(async (req, res) => {
   const data = await dashboardService.getInquiries(req.params.kunnr);
+  console.log(`[DEBUG] getInquiries count:`, data?.length);
   res.json({ success: true, data });
 });
 
 exports.getSalesOrders = asyncHandler(async (req, res) => {
   const data = await dashboardService.getSalesOrders(req.params.kunnr);
+  console.log(`[DEBUG] getSalesOrders count:`, data?.length);
   res.json({ success: true, data });
 });
 
 exports.getDeliveries = asyncHandler(async (req, res) => {
   const data = await dashboardService.getDeliveries(req.params.kunnr);
+  console.log(`[DEBUG] getDeliveries count:`, data?.length);
   res.json({ success: true, data });
 });
 
 exports.getInvoices = asyncHandler(async (req, res) => {
   const data = await financeService.getInvoices(req.params.kunnr);
+  console.log(`[DEBUG] getInvoices count:`, data?.length);
   res.json({ success: true, data });
 });
 

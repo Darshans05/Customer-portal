@@ -74,9 +74,21 @@ export class ProfileComponent implements OnInit {
   profile: any = null;
 
   ngOnInit() {
-    this.api.get<any>(`profile/${this.auth.currentUserValue?.customerId}`).subscribe({
-      next: (res) => this.profile = res.data,
-      error: () => { } // rely on mock in template
+    const customerId = this.auth.currentUserValue?.customerId;
+    console.log(`[PROFILE COMPONENT] ngOnInit - current customerId:`, customerId);
+    if (!customerId) {
+      console.warn(`[PROFILE COMPONENT] customerId is missing!`);
+    }
+    
+    this.api.get<any>(`profile/${customerId}`).subscribe({
+      next: (res) => {
+        console.log(`[PROFILE COMPONENT] Received API response:`, res);
+        this.profile = res.data;
+        console.log(`[PROFILE COMPONENT] Assigned profile data:`, this.profile);
+      },
+      error: (err) => {
+        console.error(`[PROFILE COMPONENT] API Error:`, err);
+      }
     });
   }
 }

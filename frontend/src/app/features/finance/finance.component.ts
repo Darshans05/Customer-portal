@@ -224,8 +224,10 @@ export class FinanceComponent implements OnInit {
 
   loadInvoices() {
     this.loading = true;
+    console.log(`[FINANCE] Loading invoices for ${this.customerId}`);
     this.api.get<{success: boolean, data: any[]}>(`invoice/${this.customerId}`).subscribe({
       next: (res) => {
+        console.log(`[FINANCE] Invoices received:`, res);
         this.invoices = res.data || [];
         
         // Group by VBELN to handle duplicates in line items
@@ -236,6 +238,7 @@ export class FinanceComponent implements OnInit {
           }
         });
         this.uniqueInvoices = Array.from(uniqueMap.values());
+        console.log(`[FINANCE] Unique invoices count:`, this.uniqueInvoices.length);
 
         // Extract available currencies
         this.availableCurrencies = Array.from(new Set(this.uniqueInvoices.map(inv => inv.currency))).filter(c => !!c);
@@ -245,13 +248,15 @@ export class FinanceComponent implements OnInit {
           const val = parseFloat(inv.netValue) || 0;
           return sum + val;
         }, 0);
-        this.checkLoadingComplete();
+        this.loading = false;
+        console.log(`[FINANCE] Loading set to false (invoices)`);
       },
-      error: () => {
+      error: (err) => {
+        console.error('[FINANCE] Invoice API Error:', err);
         this.invoices = [];
         this.uniqueInvoices = [];
         this.totalOutstanding = 0;
-        this.checkLoadingComplete();
+        this.loading = false;
       }
     });
   }
